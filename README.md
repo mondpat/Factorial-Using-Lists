@@ -1,4 +1,4 @@
-# FactorialWithLists
+# Factorial-Using-Lists
 Konzolový program pro vypočítání faktoriálu pro zadané číslo. Výpočet je vykonán pomocí polí čísel, nikoliv dlouhých čísel.
 Projekt sestává z několika funkcí, jako například:
 - vynásobení pole číslem (každý prvek ve vstupním poli se vynásobí zadaným číslem)
