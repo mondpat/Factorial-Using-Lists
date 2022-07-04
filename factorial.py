@@ -1,4 +1,4 @@
-def ToString(a):
+def ToList(a):
     a = str(a)
     b = 0
     out = []
@@ -78,10 +78,10 @@ def MultiplyByList(x, y):
     return Turn(CalcAllNumbsInListToBeLowerThan10(total))
 
 def CalcFactorial(x):
-    TempFactorial = ToString(1)
+    TempFactorial = ToList(1)
     multiplier = 2
     while(multiplier < x+1):
-        TempFactorial = MultiplyByList(TempFactorial, ToString(multiplier))
+        TempFactorial = MultiplyByList(TempFactorial, ToList(multiplier))
         multiplier += 1
     return TempFactorial
 
