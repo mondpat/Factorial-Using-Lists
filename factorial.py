@@ -89,7 +89,7 @@ def PrintList(x):
     for a in range(0, len(x)):
         print(x[a], end="")
 
-print("Welcome, please insert a number for calculating it's factorial: ")
+print("Welcome, please insert a number for calculating it's factorial: ", end="")
 a = int(input())
 b = CalcFactorial(a)
 print(f"{a}! = ", end='')
