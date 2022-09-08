@@ -7,11 +7,11 @@ def ToList(a):
         b += 1
     return out
 
-def Turn(pole):
+def Turn(arr):
     out = []
-    a = len(pole)-1
+    a = len(arr)-1
     while(a >= 0):
-        out.append(pole[a])
+        out.append(arr[a])
         a -= 1
     return out
 
