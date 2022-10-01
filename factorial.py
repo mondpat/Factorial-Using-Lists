@@ -1,4 +1,4 @@
-def ToList(a):
+def ConvertIntToList(a: int) -> list[int]:
     a = str(a)
     b = 0
     out = []
@@ -7,7 +7,7 @@ def ToList(a):
         b += 1
     return out
 
-def Turn(arr):
+def FlipList(arr: list[int]) -> list[int]:
     out = []
     a = len(arr)-1
     while(a >= 0):
@@ -15,25 +15,25 @@ def Turn(arr):
         a -= 1
     return out
 
-def CalcAllNumbsInListToBeLowerThan10(arr):
+def CalcAllNumbersInListToBeLowerThan10(arr: list[int]) -> list[int]:
     a = 0
     while(a < len(arr)):
         if(arr[a] > 9):
             b = arr[a] % 10
-            c = int((arr[a]-b)/10)
-            if(a+1 < len(arr)):
-                arr[a+1] += c
+            c = int((arr[a] - b) / 10)
+            if(a + 1 < len(arr)):
+                arr[a + 1] += c
             else:
                 arr.append(c)
             arr[a] = b
         a += 1
     return arr
 
-def Add(x, y):
+def AddNumbersInTwoLists(x: list[int], y: list[int]) -> list[int]:
     out = []
     a = 0
     while(a < len(x) and a < len(y)):
-        out.append(x[a]+y[a])
+        out.append(x[a] + y[a])
         a += 1
     if(a != len(x) or a != len(y)):
         if(a != len(x)):
@@ -44,28 +44,27 @@ def Add(x, y):
             while(a < len(y)):
                 out.append(y[a])
                 a += 1
-    return CalcAllNumbsInListToBeLowerThan10(out)
+    return CalcAllNumbersInListToBeLowerThan10(out)
 
-def MultiplyListByNumber(x, z):
+def MultiplyListByNumber(x: list[int], z: int) -> list[int]:
     a = 0
-    x = Turn(x)
+    x = FlipList(x)
     out = []
     while(a < len(x)):
-        out.append(x[a]*z)
+        out.append(x[a] * z)
         a += 1
-    return CalcAllNumbsInListToBeLowerThan10(Turn(out))
+    return CalcAllNumbersInListToBeLowerThan10(FlipList(out))
 
-def AddLeadingZeros(x, z):
-    a = 0
-    x = Turn(x)
-    while(a < z):
+def AddLeadingZeros(x: list[int], numberOfZeros: int) -> list[int]:
+    x = FlipList(x)
+    while(numberOfZeros > 0):
         x.append(0)
-        a += 1
-    return Turn(x)
+        numberOfZeros -= 1
+    return FlipList(x)
 
-def MultiplyByList(x, y):
-    x = Turn(x)
-    y = Turn(y)
+def MultiplyByList(x: list[int], y: list[int]) -> list[int]:
+    x = FlipList(x)
+    y = FlipList(y)
     a = 0
     if(len(y) > len(x)):
         x, y = y, x
@@ -73,25 +72,25 @@ def MultiplyByList(x, y):
     total = []
     while(a < len(y)):
         add = AddLeadingZeros(MultiplyListByNumber(x, y[a]), a)
-        total = Add(total, add)
+        total = AddNumbersInTwoLists(total, add)
         a += 1
-    return Turn(CalcAllNumbsInListToBeLowerThan10(total))
+    return FlipList(CalcAllNumbersInListToBeLowerThan10(total))
 
-def CalcFactorial(x):
-    TempFactorial = ToList(1)
+def CalcFactorial(x: int) -> list[int]:
+    TempFactorial = ConvertIntToList(1)
     multiplier = 2
-    while(multiplier < x+1):
-        TempFactorial = MultiplyByList(TempFactorial, ToList(multiplier))
+    while(multiplier < x + 1):
+        TempFactorial = MultiplyByList(TempFactorial, ConvertIntToList(multiplier))
         multiplier += 1
     return TempFactorial
 
-def PrintList(x):
+def PrintList(x: list[int]) -> None:
     for a in range(0, len(x)):
-        print(x[a], end="")
+        print(x[a], end = "")
 
 print("Welcome, please insert a number for calculating it's factorial: ", end="")
 a = int(input())
 b = CalcFactorial(a)
 print(f"{a}! = ", end='')
 PrintList(b)
-print(f"\nThe lenght of the factorial is {len(b)} digits")
+print(f"\nThe length of the factorial is {len(b)} digits")
