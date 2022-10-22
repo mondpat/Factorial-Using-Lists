@@ -85,12 +85,16 @@ def CalcFactorial(x: int) -> list[int]:
     return TempFactorial
 
 def PrintList(x: list[int]) -> None:
+    listLen = len(x)
     for a in range(0, len(x)):
+        if listLen % 3 == 0:
+            print(" ", end="")
         print(x[a], end = "")
+        listLen -= 1
 
 print("Welcome, please insert a number for calculating it's factorial: ", end="")
 a = int(input())
 b = CalcFactorial(a)
-print(f"{a}! = ", end='')
+print(f"{a}! = ", end="")
 PrintList(b)
 print(f"\nThe length of the factorial is {len(b)} digits")
