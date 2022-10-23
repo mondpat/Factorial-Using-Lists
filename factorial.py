@@ -77,24 +77,34 @@ def MultiplyByList(x: list[int], y: list[int]) -> list[int]:
     return FlipList(CalcAllNumbersInListToBeLowerThan10(total))
 
 def CalcFactorial(x: int) -> list[int]:
+    negative = True if x < 0 else False
+    x = abs(x)
     TempFactorial = ConvertIntToList(1)
     multiplier = 2
     while(multiplier < x + 1):
         TempFactorial = MultiplyByList(TempFactorial, ConvertIntToList(multiplier))
         multiplier += 1
+    if negative:
+        TempFactorial = FlipList(TempFactorial)
+        TempFactorial.append("-")
+        TempFactorial = FlipList(TempFactorial)
     return TempFactorial
 
 def PrintList(x: list[int]) -> None:
     listLen = len(x)
+    if x[0] == "-":
+        listLen -= 1
     for a in range(0, len(x)):
         if listLen % 3 == 0:
             print(" ", end="")
         print(x[a], end = "")
-        listLen -= 1
+        if x[a] != "-":
+            listLen -= 1
 
 print("Welcome, please insert a number for calculating it's factorial: ", end="")
 a = int(input())
 b = CalcFactorial(a)
 print(f"{a}! = ", end="")
 PrintList(b)
-print(f"\nThe length of the factorial is {len(b)} digits")
+lengthOfFactorial = len(b) - 1 if b[0] == "-" else len(b)
+print(f"\nThe length of the factorial is {lengthOfFactorial} digits")
